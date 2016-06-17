@@ -1,7 +1,3 @@
--- Geração de Modelo físico
--- Sql ANSI 2003 - brModelo.
-
-
 CREATE TABLE cidade (
 id serial PRIMARY KEY,
 cidade varchar(500)
@@ -29,7 +25,6 @@ idcidade integer,
 telefone varchar(500),
 FOREIGN KEY(idcidade) REFERENCES cidade (id)
 );
-
 
 -- drop table ordem
 CREATE TABLE ordem (
@@ -86,3 +81,4 @@ insert into ordem (idcliente, idusuario, data_abertura, data_termino, descricao_
 insert into ordem (idcliente, idusuario, data_abertura, data_termino, descricao_problema,descricao_solucao,status) values(2,2,'13-05-2016','14-05-2016','Não da tela ','Cabo desconectado','FALSE');
 insert into ordem (idcliente, idusuario, data_abertura, data_termino, descricao_problema,descricao_solucao,status) values(3,3,'15-05-2016','20-05-2016','Não desliga','Virus','FALSE');
 -- select * from ordem
+

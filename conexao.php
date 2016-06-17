@@ -1,6 +1,6 @@
 <?php
 
-$dsn = "pgsql:host=localhost;dbname=bdb";
+$dsn = "pgsql:host=localhost;dbname=trab_ads_132";
 $usuario = "postgres";
 $senha   = "masterkey";
 

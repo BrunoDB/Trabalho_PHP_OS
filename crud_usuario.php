@@ -1,7 +1,6 @@
 <?php
 
 require_once './conexao.php';
-
 if (!isset($_GET['acao']))
     $acao = "listar";
 else
@@ -15,64 +14,45 @@ if ($acao == "listar") {
 }
 //Excluir Usuario selecionado
 else if ($acao == "excluir") {
-    $select = "DELETE FROM usuario WHERE idusuario = :id";
+    $select = "DELETE FROM usuario WHERE id = :id";
     $query = $bd->prepare($select);
     if ($query->execute(array('id' => $_GET['id'])))
         header('Location: index.php?manutencao=usuario');
     else
         print_r($query->errorInfo());
 }
-//Criar novo usuario
+//Adicionar Novo Usuario
 else if ($acao == "novo") {
     $action = "index.php?manutencao=usuario&acao=cadastrar";
-    $listaTipo = BuscaTipo();
-    $listaCidade = BuscaCidade();
+
     require './form_Usuario.php';
-} else if ($acao == "cadastrar") {
-    $select = "INSERT INTO usuario(usuario, email, senha, idtipo ,idcidade) "
-            . "VALUES(:usuario,:email, :idtipo, :idcidade, :senha)";
+}
+//Cadastrar Novo Usuario
+else if ($acao == "cadastrar") {
+    $select = "INSERT INTO usuario(usuario,email, senha) VALUES(:usuario,:email, :senha)";
     $query = $bd->prepare($select);
-    if ($query->execute(array('usuario' => $_POST['usuario'],
-                'idtipo' => $_POST['idtipo'],
-                'idcidade' => $_POST['idcidade'] ,
-                'email' => $_POST['email'],
-                'senha' => md5($_POST['senha']))))
+    if ($query->execute(array('usuario' => $_POST['usuario'], 'email' => $_POST['email'], 'senha' => md5($_POST['senha']))))
         header('Location: index.php?manutencao=usuario');
-    
     else
-        echo 'Falha ao Cadastrare Usuário<br>';
-        print_r($query->errorInfo());
+        echo 'Erro ao cadastrar';
+    print_r($query->errorInfo());
 }
 //Atualizar Usuario
 else if ($acao == "atualizar") {
-    $select = "UPDATE usuario set nome = :nome, email = :email,  senha = :senha WHERE idUsuario = :id";
+    $select = "UPDATE usuario set usuario = :usuario, email = :email,  senha = :senha WHERE id = :id";
     $query = $bd->prepare($select);
     $_POST['id'] = $_GET['id'];
-    if ($query->execute(array('id' => $_POST['id'], 'nome' => $_POST['nome'], 'email' => $_POST['email'], 'senha' => md5($_POST['senha']))))
+    if ($query->execute(array('id' => $_POST['id'], 'usuario' => $_POST['usuario'], 'email' => $_POST['email'], 'senha' => md5($_POST['senha']))))
         header('Location: index.php?manutencao=usuario');
     else
         print_r($query->errorInfo());
 }
 //Buscar usuario
 else if ($acao == "buscar") {
-    $select = "SELECT * FROM usuario WHERE idusuario = :id";
+    $select = "SELECT * FROM usuario WHERE id = :id";
     $query = $bd->prepare($select);
     $query->execute(array('id' => $_GET['id']));
     $registro = $query->fetch();
     $action = "index.php?manutencao=usuario&acao=atualizar&id=" . $_GET['id'];
-    require './formUsuario.php';
-}
-
-function BuscaTipo() {
-    $bd = $GLOBALS['bd'];
-    $select = "SELECT * FROM tipo";
-    $queryT = $bd->query($select);
-    return $queryT->fetchAll();
-}
-
-function BuscaCidade() {
-    $bd = $GLOBALS['bd'];
-    $select = "SELECT * FROM cidade";
-    $queryC = $bd->query($select);
-    return $queryC->fetchAll();
+    require './form_Usuario.php';
 }
