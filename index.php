@@ -130,22 +130,22 @@ require_once './conexao.php';
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
         <script>
-            function myFunction() {
-                document.getElementById("myDropdownN").classList.toggle("show");
-            }
-            window.onclick = function(event) {
-                if (!event.target.matches('.dropbtnN')) {
+                                    function myFunction() {
+                                        document.getElementById("myDropdownN").classList.toggle("show");
+                                    }
+                                    window.onclick = function (event) {
+                                        if (!event.target.matches('.dropbtnN')) {
 
-                    var dropdowns = document.getElementsByClassName("dropdownN-content");
-                    var i;
-                    for (i = 0; i < dropdowns.length; i++) {
-                        var openDropdownN = dropdowns[i];
-                        if (openDropdownN.classList.contains('show')) {
-                            openDropdownN.classList.remove('show');
-                        }
-                    }
-                }
-            }
+                                            var dropdowns = document.getElementsByClassName("dropdownN-content");
+                                            var i;
+                                            for (i = 0; i < dropdowns.length; i++) {
+                                                var openDropdownN = dropdowns[i];
+                                                if (openDropdownN.classList.contains('show')) {
+                                                    openDropdownN.classList.remove('show');
+                                                }
+                                            }
+                                        }
+                                    }
         </script>
     </body>
 </html>

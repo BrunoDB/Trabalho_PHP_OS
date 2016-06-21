@@ -1,7 +1,15 @@
 <?php
+ob_start();
+if (!$_SESSION['logado'])
+    header('Location: login.php');
+require_once './conexao.php';
+
 if (!isset($action))
     $action = "index.php?manutencao=os&acao=cadastrar";
 ?>
+
+
+
 <form name="form_OsUp" action="<?php echo $action; ?>" method="POST">
     <div class="form-group">
         <label for="idcliente">Cliente</label>

@@ -1,4 +1,7 @@
 <?php
+ob_start();
+if (!$_SESSION['logado'])
+    header('Location: login.php');
 
 include 'pdf/mpdf.php';
 require_once './conexao.php';

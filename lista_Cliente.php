@@ -4,9 +4,9 @@ if (!$_SESSION['logado'])
     header('Location: login.php');
 require_once './conexao.php';
 ?>
-<a href="index.php?manutencao=cliente&acao=novo">
+<!--<a href="index.php?manutencao=cliente&acao=novo">
     <span class="glyphicon glyphicon-plus">Adicionar</span> 
-</a>
+</a>-->
 <table class="table table-striped table-hover">
     <thead>
     <th>#</th>

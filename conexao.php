@@ -1,7 +1,7 @@
 <?php
 
-$dsn = "pgsql:host=localhost;dbname=trab_ads_132";
+$dsn = "pgsql:host=localhost;dbname=bdb";
 $usuario = "postgres";
-$senha   = "masterkey";
+$senha = "masterkey";
 
 $bd = new PDO($dsn, $usuario, $senha);

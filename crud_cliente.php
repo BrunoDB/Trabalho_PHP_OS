@@ -1,4 +1,7 @@
 <?php
+ob_start();
+if (!$_SESSION['logado'])
+    header('Location: login.php');
 
 if (!isset($_GET['acao']))
     $acao = "listar";
@@ -18,7 +21,8 @@ else if ($acao == "excluir") {
     if ($query->execute(array('id' => $_GET['id'])))
         header('Location: index.php?manutencao=cliente');
     else
-        print_r($query->errorInfo());
+        echo '<center><h1>Erro 0x000FHSDJ25:</h1><br> Este Cliente esta vinculado a uma Os e não pode ser excluido.<br>Tambem te amo:)</center>  ';
+//        print_r($query->errorInfo());
 }
 //--------Ação Novo
 else if ($acao == "novo") {
@@ -34,7 +38,8 @@ else if ($acao == "cadastrar") {
     if ($query->execute($_POST))
         header('Location: index.php?manutencao=cliente');
     else
-        print_r($query->errorInfo());
+                echo '<center><h1>Erro 0x000FHSDJ26:</h1><br> Erro ao cadastrar Cliente. <br>Entre em contato com o administrador.<br><br>Tambem te amo:)</center>  ';
+//        print_r($query->errorInfo());
 }
 //--------Ação Atualizar
 else if ($acao == "atualizar") {
@@ -46,7 +51,8 @@ else if ($acao == "atualizar") {
     if ($query->execute($_POST))
         header('Location: index.php?manutencao=cliente');
     else
-        print_r($query->errorInfo());
+        echo '<center><h1>Erro 0x000FHSDJ27:</h1><br> Erro ao adicionar novas informações. <br>Entre em contato com o administrador.<br><br>Tambem te amo:)</center>  ';
+//        print_r($query->errorInfo());
 }
 //Ação Buscar
 else if ($acao == "buscar") {

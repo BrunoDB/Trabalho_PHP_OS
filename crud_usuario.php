@@ -1,4 +1,7 @@
 <?php
+ob_start();
+if (!$_SESSION['logado'])
+    header('Location: login.php');
 
 require_once './conexao.php';
 if (!isset($_GET['acao']))
@@ -19,12 +22,12 @@ else if ($acao == "excluir") {
     if ($query->execute(array('id' => $_GET['id'])))
         header('Location: index.php?manutencao=usuario');
     else
-        print_r($query->errorInfo());
+echo '<center><h1>Erro 0x000FHSDJ24:</h1><br> Este Usuário esta vinculado a uma Os e não pode ser excluido.<br>Tambem te amo:)</center>  ';
+//        print_r($query->errorInfo());
 }
 //Adicionar Novo Usuario
 else if ($acao == "novo") {
     $action = "index.php?manutencao=usuario&acao=cadastrar";
-
     require './form_Usuario.php';
 }
 //Cadastrar Novo Usuario
@@ -34,8 +37,8 @@ else if ($acao == "cadastrar") {
     if ($query->execute(array('usuario' => $_POST['usuario'], 'email' => $_POST['email'], 'senha' => md5($_POST['senha']))))
         header('Location: index.php?manutencao=usuario');
     else
-        echo 'Erro ao cadastrar';
-    print_r($query->errorInfo());
+        echo '<center><h1>Erro 0x000FHSDJ40:</h1><br> Erro ao cadastrar novo Usuário. <br>Entre em contato com o administrador.<br><br>Tambem te amo:)</center>  ';
+//    print_r($query->errorInfo());
 }
 //Atualizar Usuario
 else if ($acao == "atualizar") {
@@ -45,7 +48,8 @@ else if ($acao == "atualizar") {
     if ($query->execute(array('id' => $_POST['id'], 'usuario' => $_POST['usuario'], 'email' => $_POST['email'], 'senha' => md5($_POST['senha']))))
         header('Location: index.php?manutencao=usuario');
     else
-        print_r($query->errorInfo());
+        echo '<center><h1>Erro 0x000FHSDJ41:</h1><br> Erro ao adicionar novas informações. <br>Entre em contato com o administrador.<br><br>Tambem te amo:)</center>  ';
+//        print_r($query->errorInfo());
 }
 //Buscar usuario
 else if ($acao == "buscar") {

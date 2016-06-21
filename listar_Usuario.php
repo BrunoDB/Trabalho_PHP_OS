@@ -5,9 +5,9 @@ if (!$_SESSION['logado'])
 require_once './conexao.php';
 ?>
 <center><h1>Lista dos Usuários Cadastrados</h1></center>
-<a href="index.php?manutencao=usuario&acao=novo">
+<!--<a href="index.php?manutencao=usuario&acao=novo">
     <span class="glyphicon glyphicon-plus">Adicionar Usuário</span> 
-</a>
+</a>-->
 <table class="table table-striped table-hover">
     <thead>
     <th>#</th>

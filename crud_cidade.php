@@ -1,9 +1,10 @@
 <?php
 
-//    if(basename($_SERVER['PHP_SELF'], ".php") != "index"){
-//       echo "Acesso Indevido";
-//       exit;
-//   }
+ob_start();
+if (!$_SESSION['logado'])
+    header('Location: login.php');
+require_once './conexao.php';
+
 if (!isset($_GET['acao']))
     $acao = "listar";
 else
@@ -21,7 +22,8 @@ else if ($acao == "excluir") {
     if ($query->execute(array('id' => $_GET['id'])))
         header('Location: index.php?manutencao=cidade');
     else
-        print_r($query->errorInfo());
+        echo '<center><h1>Erro 0x000FHSDJ23:</h1><br> Esta Cidade esta vinculado a um Usuário e não pode ser excluido.<br>Tambem te amo:)</center>  ';
+//        print_r($query->errorInfo());
 }
 //--------Ação Novo
 else if ($acao == "novo") {
@@ -35,7 +37,8 @@ else if ($acao == "cadastrar") {
     if ($query->execute($_POST))
         header('Location: index.php?manutencao=cidade');
     else
-        print_r($query->errorInfo());
+          echo '<center><h1>Erro 0x000FHSDJ27:</h1><br> Erro ao cadastrar Cidade. <br>Entre em contato com o administrador.<br><br>Tambem te amo:)</center>  ';
+//        print_r($query->errorInfo());
 }
 //--------Ação Atualizar
 else if ($acao == "atualizar") {
@@ -47,7 +50,8 @@ else if ($acao == "atualizar") {
     if ($query->execute($_POST))
         header('Location: index.php?manutencao=cidade');
     else
-        print_r($query->errorInfo());
+        echo '<center><h1>Erro 0x000FHSDJ28:</h1><br> Erro ao adicionar novas informações. <br>Entre em contato com o administrador.<br><br>Tambem te amo:)</center>  ';
+//        print_r($query->errorInfo());
 }
 //Ação Buscar
 else if ($acao == "buscar") {

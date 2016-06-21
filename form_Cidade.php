@@ -1,5 +1,10 @@
 <?php
-   if(!isset($action)) 
+ob_start();
+if (!$_SESSION['logado'])
+    header('Location: login.php');
+require_once './conexao.php';
+
+if(!isset($action)) 
         $action = "index.php?manutencao=cidade&acao=cadastrar";
 ?>
 <form name="formCurso" action="<?php echo $action; ?>" method="POST">

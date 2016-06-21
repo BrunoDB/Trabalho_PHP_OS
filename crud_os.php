@@ -1,4 +1,7 @@
 <?php
+ob_start();
+if (!$_SESSION['logado'])
+    header('Location: login.php');
 
 require_once './conexao.php';
 if (!isset($_GET['acao']))
@@ -46,7 +49,8 @@ else if ($acao == "excluir") {
     if ($query->execute(array('id' => $_GET['id'])))
         header('Location: index.php?manutencao=os');
     else
-        print_r($query->errorInfo());
+        echo '<center><h1>Erro 0x000FHSDJ30:</h1><br> Erro ao Excluir OS. <br>Entre em contato com o administrador.<br><br>Tambem te amo:)</center>  ';
+//        print_r($query->errorInfo());
 }
 //Adicionar Nova OS
 else if ($acao == "novo") {
@@ -63,8 +67,8 @@ else if ($acao == "cadastrar") {
     if ($query->execute($_POST))
         header('Location: index.php?manutencao=os');
     else
-        echo 'Erro 01<br>';
-    print_r($query->errorInfo());
+        echo '<center><h1>Erro 0x000FHSDJ31:</h1><br> Erro ao cadastrar OS. <br>Entre em contato com o administrador.<br><br>Tambem te amo:)</center>  ';
+//    print_r($query->errorInfo());
 }
 //Atualizar os
 else if ($acao == "atualizar") {
@@ -74,7 +78,8 @@ else if ($acao == "atualizar") {
     if ($query->execute($_POST))
         header('Location: index.php?manutencao=os');
     else
-        print_r($query->errorInfo());
+echo '<center><h1>Erro 0x000FHSDJ27:</h1><br> Erro ao adicionar novas informações. <br>Entre em contato com o administrador.<br><br>Tambem te amo:)</center>  ';
+//        print_r($query->errorInfo());
 }
 //Buscar usuario
 else if ($acao == "buscar") {
@@ -83,6 +88,8 @@ else if ($acao == "buscar") {
     $query->execute(array('id' => $_GET['id']));
     $registro = $query->fetch();
     $action = "index.php?manutencao=os&acao=atualizar&id=" . $_GET['id'];
+    $listaCliente = BuscaCliente();
+    $listaUsuario = BuscaUsuario();
     require './form_OsUp.php';
 }
 
