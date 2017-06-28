@@ -115,6 +115,7 @@ require_once './conexao.php';
                 }
             } else {
                 ?>
+            <center>
                 <div class="jumbotron">
                     <h1>Suporte - BDB</h1>
                     <p>Criação de Ordens de serviço para suporte.</p>
@@ -122,6 +123,7 @@ require_once './conexao.php';
                         <a class="btn btn-lg btn-primary" href="index.php?manutencao=os&acao=novo" role="button">Abrir de ordem de serviço&raquo;</a>
                     </p>
                 </div>
+            </center>
             <?php } ?>
         </div> <!-- /container -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
