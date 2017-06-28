@@ -1,4 +1,5 @@
 <?php
+session_start();
 ob_start();
 if (!$_SESSION['logado'])
     header('Location: login.php');
